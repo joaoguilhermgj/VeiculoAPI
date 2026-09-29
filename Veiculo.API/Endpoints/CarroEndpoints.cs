@@ -8,8 +8,8 @@ namespace Veiculo.API.Endpoints
         public static void MapCarroEndpoints(this WebApplication app)
         {
             var grupo = app.MapGroup("/api/veiculos")
-                .WithTags("Veículos");
-                //.RequireAutorization();
+                .WithTags("Veículos")
+                .RequireAuthorization();
                
 
             grupo.MapGet("/", async (CarroService service) =>

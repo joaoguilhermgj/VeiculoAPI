@@ -33,6 +33,8 @@ namespace Veiculo.API.Endpoints
                 var token = tokenService.GerarToken(usuario.Id, usuario.Email!, roles);
 
                 return Results.Ok(new { token });
+
+
             });
         }  
     }
