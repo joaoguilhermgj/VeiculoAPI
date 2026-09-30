@@ -23,8 +23,15 @@ namespace Veiculo.API.Endpoints
 
             grupo.MapPost("/", async (CriarCarroDto dto, CarroService service) =>
             {
-                var criado = await service.CriarAsync(dto);
-                return Results.Created($"/api/veiculos/{criado.Id}", criado);
+                try
+                {
+                    var criado = await service.CriarAsync(dto);
+                    return Results.Created($"/api/veiculos/{criado.Id}", criado); 
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             });
 
             grupo.MapPut("/{id:int}", async (int id, AtualizarCarroDto dto, CarroService service) =>
